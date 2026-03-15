@@ -12,11 +12,11 @@ namespace generic_collection
             Console.InputEncoding = Encoding.UTF8;
 
             Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 03: Nhập List<int> và tìm số lớn nhất\n");
+            Console.WriteLine("Bài 04: Tạo List<int>, đếm bao nhiêu số chẵn\n");
 
             List<int> ds = new List<int>();
 
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 3 7 1 9 5");
+            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 2 5 8 11 14 7");
             Console.Write("Nhập: ");
             string input = Console.ReadLine() ?? "";
 
@@ -35,12 +35,12 @@ namespace generic_collection
             }
             else
             {
-                int max = ds[0];
+                int demChan = 0;
                 foreach (int x in ds)
-                    if (x > max) max = x;
+                    if (x % 2 == 0) demChan++;
 
                 Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lớn nhất = " + max);
+                Console.WriteLine("Số lượng số chẵn = " + demChan);
             }
 =======
             Console.WriteLine("Bài 02: Nhập List<int> và tính tổng các phần tử\n");
