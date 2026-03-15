@@ -12,35 +12,49 @@ namespace generic_collection
             Console.InputEncoding = Encoding.UTF8;
 
             Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 03: Nhập List<int> và tìm số lớn nhất\n");
+            Console.WriteLine("Bài 05: Tạo List<string> tên sinh viên, xóa một tên do người dùng nhập\n");
 
-            List<int> ds = new List<int>();
-
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 3 7 1 9 5");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string p in parts)
+            int n;
+            Console.Write("Nhập số lượng sinh viên: ");
+            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                Console.Write("Nhập lại số lượng (số nguyên > 0): ");
             }
 
-            if (ds.Count == 0)
+            List<string> dsTen = new List<string>();
+            for (int i = 1; i <= n; i++)
             {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
+                Console.Write($"Nhập tên sinh viên {i}: ");
+                string ten = (Console.ReadLine() ?? "").Trim();
+
+                while (ten == "")
+                {
+                    Console.Write("Tên không được rỗng, nhập lại: ");
+                    ten = (Console.ReadLine() ?? "").Trim();
+                }
+
+                dsTen.Add(ten);
+            }
+
+            Console.WriteLine("\nDanh sách ban đầu:");
+            Console.WriteLine(string.Join(", ", dsTen));
+
+            Console.Write("\nNhập tên cần xóa: ");
+            string tenXoa = (Console.ReadLine() ?? "").Trim();
+
+            int truoc = dsTen.Count;
+
+            dsTen.RemoveAll(t => string.Equals(t, tenXoa, StringComparison.OrdinalIgnoreCase));
+
+            if (dsTen.Count < truoc)
+            {
+                Console.WriteLine("\nĐã xóa thành công!");
+                Console.WriteLine("Danh sách sau khi xóa:");
+                Console.WriteLine(string.Join(", ", dsTen));
             }
             else
             {
-                int max = ds[0];
-                foreach (int x in ds)
-                    if (x > max) max = x;
-
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lớn nhất = " + max);
+                Console.WriteLine("\nKhông tìm thấy tên cần xóa!");
             }
 
             Console.WriteLine("\nNhấn Enter để kết thúc...");
