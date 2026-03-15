@@ -12,29 +12,58 @@ namespace generic_collection
             Console.InputEncoding = Encoding.UTF8;
 
             Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
+
+            Console.WriteLine("Bài 05: Tạo List<string> tên sinh viên, xóa một tên do người dùng nhập\n");
+=======
             Console.WriteLine("Bài 04: Tạo List<int>, đếm bao nhiêu số chẵn\n");
 
-            List<int> ds = new List<int>();
+            int n;
+            Console.Write("Nhập số lượng sinh viên: ");
+            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
+            {
+                Console.Write("Nhập lại số lượng (số nguyên > 0): ");
+            }
 
+
+            List<string> dsTen = new List<string>();
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write($"Nhập tên sinh viên {i}: ");
+                string ten = (Console.ReadLine() ?? "").Trim();
+=======
             Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 2 5 8 11 14 7");
             Console.Write("Nhập: ");
             string input = Console.ReadLine() ?? "";
 
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
+                while (ten == "")
+                {
+                    Console.Write("Tên không được rỗng, nhập lại: ");
+                    ten = (Console.ReadLine() ?? "").Trim();
+                }
 
-            foreach (string p in parts)
-            {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                dsTen.Add(ten);
             }
 
-            if (ds.Count == 0)
+            Console.WriteLine("\nDanh sách ban đầu:");
+            Console.WriteLine(string.Join(", ", dsTen));
+
+            Console.Write("\nNhập tên cần xóa: ");
+            string tenXoa = (Console.ReadLine() ?? "").Trim();
+
+            int truoc = dsTen.Count;
+
+            dsTen.RemoveAll(t => string.Equals(t, tenXoa, StringComparison.OrdinalIgnoreCase));
+
+            if (dsTen.Count < truoc)
             {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
+                Console.WriteLine("\nĐã xóa thành công!");
+                Console.WriteLine("Danh sách sau khi xóa:");
+                Console.WriteLine(string.Join(", ", dsTen));
             }
             else
             {
+                Console.WriteLine("\nKhông tìm thấy tên cần xóa!");
+=======
                 int demChan = 0;
                 foreach (int x in ds)
                     if (x % 2 == 0) demChan++;
