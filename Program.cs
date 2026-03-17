@@ -4,47 +4,35 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("------------------------------");
 
-            Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 04: Tạo List<int>, đếm bao nhiêu số chẵn\n");
+            List<int> numbers = new List<int> { 2, 5, 8, 11, 14, 17, 20 };
 
-            List<int> ds = new List<int>();
-
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 2 5 8 11 14 7");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string p in parts)
+            Console.WriteLine("Danh sách:");
+            foreach (int n in numbers)
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                Console.Write(n + " ");
+            }
+            Console.WriteLine();
+
+            int countEven = 0;
+            foreach (int n in numbers)
+            {
+                if (n % 2 == 0)
+                {
+                    countEven++;
+                }
             }
 
-            if (ds.Count == 0)
-            {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
-            }
-            else
-            {
-                int demChan = 0;
-                foreach (int x in ds)
-                    if (x % 2 == 0) demChan++;
-
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lượng số chẵn = " + demChan);
-            }
-
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Console.WriteLine("Số lượng số chẵn là: " + countEven);
+            Console.ReadKey();
         }
     }
 }
