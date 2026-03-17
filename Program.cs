@@ -4,47 +4,60 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Student
+    {
+        public string Name;
+        public double Score;
+    }
+
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 03: Nhập List<int> và tìm số lớn nhất\n");
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Tạo class Student, lưu danh sách trong List<Student> và in sinh viên có điểm cao nhất.");
+            Console.WriteLine("------------------------------");
 
-            List<int> ds = new List<int>();
-
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 3 7 1 9 5");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string p in parts)
+            List<Student> students = new List<Student>
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                new Student { Name = "Nguyễn Văn An", Score = 8.5 },
+                new Student { Name = "Trần Thị Bình", Score = 9.2 },
+                new Student { Name = "Lê Văn Chiến", Score = 7.8 },
+                new Student { Name = "Phạm Thị Dung", Score = 8.9 }
+            };
+
+            Console.WriteLine("Danh sách sinh viên:");
+            foreach (Student s in students)
+            {
+                Console.WriteLine("Name: " + s.Name + " | Score: " + s.Score);
             }
 
-            if (ds.Count == 0)
+            if (students.Count == 0)
             {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
-            }
-            else
-            {
-                int max = ds[0];
-                foreach (int x in ds)
-                    if (x > max) max = x;
-
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lớn nhất = " + max);
+                Console.WriteLine("Danh sách sinh viên rỗng.");
+                Console.ReadKey();
+                return;
             }
 
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Student bestStudent = students[0];
+
+            for (int i = 1; i < students.Count; i++)
+            {
+                if (students[i].Score > bestStudent.Score)
+                {
+                    bestStudent = students[i];
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Sinh viên có điểm cao nhất:");
+            Console.WriteLine("Name: " + bestStudent.Name + " | Score: " + bestStudent.Score);
+
+            Console.ReadKey();
         }
     }
 }
