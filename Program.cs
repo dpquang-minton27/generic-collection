@@ -28,7 +28,8 @@ namespace generic_collection
             int index = -1;
             for (int i = 0; i < students.Count; i++)
             {
-                if (students[i].Equals(keyword, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrEmpty(keyword) &&
+                    students[i].Equals(keyword, StringComparison.OrdinalIgnoreCase))
                 {
                     index = i;
                     break;
