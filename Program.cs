@@ -4,47 +4,45 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Nhập một chuỗi, dùng Dictionary<char, int> để đếm số lần xuất hiện của mỗi ký tự.");
+            Console.WriteLine("------------------------------");
 
-            Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 03: Nhập List<int> và tìm số lớn nhất\n");
+            Console.Write("Nhập một chuỗi: ");
+            string text = Console.ReadLine();
 
-            List<int> ds = new List<int>();
+            Dictionary<char, int> counter = new Dictionary<char, int>();
 
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 3 7 1 9 5");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string p in parts)
+            foreach (char c in text)
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                if (c == ' ')
+                {
+                    continue;
+                }
+
+                if (counter.ContainsKey(c))
+                {
+                    counter[c]++;
+                }
+                else
+                {
+                    counter[c] = 1;
+                }
             }
 
-            if (ds.Count == 0)
+            Console.WriteLine("Số lần xuất hiện của mỗi ký tự:");
+            foreach (KeyValuePair<char, int> item in counter)
             {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
-            }
-            else
-            {
-                int max = ds[0];
-                foreach (int x in ds)
-                    if (x > max) max = x;
-
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lớn nhất = " + max);
+                Console.WriteLine(item.Key + " : " + item.Value);
             }
 
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
