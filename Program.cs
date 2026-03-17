@@ -11,6 +11,8 @@ namespace generic_collection
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Tên: Dương Phước Quang");
             Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Viết chương trình tìm giá trị nhỏ nhất trong List<int>.");
+=======
             Console.WriteLine("Đề bài: Nhập List<int>, tạo danh sách mới không chứa phần tử trùng.");
             Console.WriteLine("------------------------------");
 
@@ -21,6 +23,13 @@ namespace generic_collection
             List<int> numbers = new List<int>();
 
             foreach (string part in parts)
+            {
+                int n;
+                if (int.TryParse(part, out n))
+                {
+                    numbers.Add(n);
+                }
+=======
             {
                 int n;
                 if (int.TryParse(part, out n))
@@ -74,6 +83,21 @@ namespace generic_collection
             }
             Console.WriteLine();
 
+            if (numbers.Count == 0)
+            {
+                Console.WriteLine("Danh sách rỗng.");
+                Console.ReadKey();
+                return;
+            }
+
+            int min = numbers[0];
+            for (int i = 1; i < numbers.Count; i++)
+            {
+                if (numbers[i] < min)
+                {
+                    min = numbers[i];
+                }
+=======
             Console.Write("Nhập tên cần xóa: ");
             string keyword = Console.ReadLine();
 
@@ -125,6 +149,8 @@ namespace generic_collection
             Console.Write("Nhập: ");
             string input = Console.ReadLine() ?? "";
 
+            Console.WriteLine("Phần tử nhỏ nhất là: " + min);
+=======
             string[] parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (!string.IsNullOrEmpty(keyword))
