@@ -13,6 +13,8 @@ namespace generic_collection
             Console.WriteLine("MSV: 2415053122131");
             Console.WriteLine("------------------------------");
 
+            List<string> students = new List<string> { "An", "Bình", "Cường", "Dung", "Hà" };
+=======
             List<int> numbers = new List<int> { 2, 5, 8, 11, 14, 17, 20 };
 
             Console.WriteLine("Danh sách:");
@@ -20,55 +22,36 @@ namespace generic_collection
 =======
             Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
 
-            Console.WriteLine("Bài 05: Tạo List<string> tên sinh viên, xóa một tên do người dùng nhập\n");
-=======
-            Console.WriteLine("Bài 04: Tạo List<int>, đếm bao nhiêu số chẵn\n");
-
-            int n;
-            Console.Write("Nhập số lượng sinh viên: ");
-            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
+            Console.WriteLine("Danh sách sinh viên ban đầu:");
+            foreach (string name in students)
             {
-                Console.Write("Nhập lại số lượng (số nguyên > 0): ");
+                Console.Write(name + " ");
             }
+            Console.WriteLine();
 
+            Console.Write("Nhập tên cần xóa: ");
+            string keyword = Console.ReadLine();
 
-            List<string> dsTen = new List<string>();
-            for (int i = 1; i <= n; i++)
+            int index = -1;
+            for (int i = 0; i < students.Count; i++)
             {
-                Console.Write($"Nhập tên sinh viên {i}: ");
-                string ten = (Console.ReadLine() ?? "").Trim();
-=======
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 2 5 8 11 14 7");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-                while (ten == "")
+                if (!string.IsNullOrEmpty(keyword) &&
+                    students[i].Equals(keyword, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.Write("Tên không được rỗng, nhập lại: ");
-                    ten = (Console.ReadLine() ?? "").Trim();
+                    index = i;
+                    break;
                 }
-
-                dsTen.Add(ten);
             }
 
-            Console.WriteLine("\nDanh sách ban đầu:");
-            Console.WriteLine(string.Join(", ", dsTen));
-
-            Console.Write("\nNhập tên cần xóa: ");
-            string tenXoa = (Console.ReadLine() ?? "").Trim();
-
-            int truoc = dsTen.Count;
-
-            dsTen.RemoveAll(t => string.Equals(t, tenXoa, StringComparison.OrdinalIgnoreCase));
-
-            if (dsTen.Count < truoc)
+            if (index != -1)
             {
-                Console.WriteLine("\nĐã xóa thành công!");
-                Console.WriteLine("Danh sách sau khi xóa:");
-                Console.WriteLine(string.Join(", ", dsTen));
+                students.RemoveAt(index);
+                Console.WriteLine("Đã xóa tên: " + keyword);
             }
             else
             {
+                Console.WriteLine("Không tìm thấy tên cần xóa.");
+=======
                 Console.WriteLine("\nKhông tìm thấy tên cần xóa!");
 =======
                 int demChan = 0;
@@ -95,6 +78,11 @@ namespace generic_collection
             }
             Console.WriteLine();
 
+            Console.WriteLine("Danh sách sau khi xóa:");
+            foreach (string name in students)
+            {
+                Console.Write(name + " ");
+=======
             int countEven = 0;
             foreach (int n in numbers)
             {
@@ -109,41 +97,9 @@ namespace generic_collection
 =======
                 Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
             }
-            else
-            {
-                int tong = 0;
-                foreach (int x in ds) tong += x;
+            Console.WriteLine();
 
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Tổng các phần tử = " + tong);
-            }
-=======
-            Console.WriteLine("Bài 01: Tạo List<int>, nhập 5 số và in ra màn hình\n");
-
-            List<int> ds = new List<int>();
-
-            for (int i = 1; i <= 5; i++)
-            {
-                while (true)
-                {
-                    Console.Write($"Nhập số nguyên thứ {i}: ");
-                    string s = Console.ReadLine() ?? "";
-
-                    if (int.TryParse(s, out int n))
-                    {
-                        ds.Add(n);
-                        break;
-                    }
-
-                    Console.WriteLine("Bạn nhập sai! Vui lòng nhập lại số nguyên.\n");
-                }
-            }
-
-            Console.WriteLine("\nCác phần tử trong danh sách:");
-            Console.WriteLine(string.Join(" ", ds));
-
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
