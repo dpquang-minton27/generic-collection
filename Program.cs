@@ -33,6 +33,44 @@ namespace generic_collection
                 Console.WriteLine("ID: " + s.Id + " | Name: " + s.Name);
             }
 
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Từ List<Student>, tìm sinh viên theo tên nhập vào.");
+            Console.WriteLine("------------------------------");
+
+            List<Student> students = new List<Student>
+            {
+                new Student { Id = 1, Name = "Nguyễn Văn An" },
+                new Student { Id = 2, Name = "Trần Thị Bình" },
+                new Student { Id = 3, Name = "Lê Văn Chiến" }
+            };
+
+            Console.WriteLine("Danh sách sinh viên:");
+            foreach (Student s in students)
+            {
+                Console.WriteLine("ID: " + s.Id + " | Name: " + s.Name);
+            }
+
+            Console.Write("Nhập tên sinh viên cần tìm: ");
+            string keyword = (Console.ReadLine() ?? "").Trim();
+
+            bool found = false;
+
+            foreach (Student s in students)
+            {
+                if ((s.Name ?? "").Trim().Equals(keyword, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Tìm thấy sinh viên:");
+                    Console.WriteLine("ID: " + s.Id + " | Name: " + s.Name);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Không tìm thấy sinh viên.");
+=======
 =======
             Console.WriteLine("Đề bài: Viết chương trình tìm giá trị nhỏ nhất trong List<int>.");
 =======
@@ -156,6 +194,7 @@ namespace generic_collection
 =======
             Console.WriteLine("Bài 02: Nhập List<int> và tính tổng các phần tử\n");
 
+=======
             Console.WriteLine("Danh sách hiện có:");
             foreach (string word in words)
             {
