@@ -11,6 +11,23 @@ namespace generic_collection
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Tên: Dương Phước Quang");
             Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Nhập List<int>, tạo danh sách mới không chứa phần tử trùng.");
+            Console.WriteLine("------------------------------");
+
+            Console.Write("Nhập các số nguyên cách nhau bởi dấu cách: ");
+            string input = Console.ReadLine();
+
+            string[] parts = input.Split(new char[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            List<int> numbers = new List<int>();
+
+            foreach (string part in parts)
+            {
+                int n;
+                if (int.TryParse(part, out n))
+                {
+                    numbers.Add(n);
+                }
+=======
             Console.WriteLine("Đề bài: Tạo List<int>, đảo ngược thứ tự phần tử.");
             Console.WriteLine("------------------------------");
 
@@ -131,6 +148,21 @@ namespace generic_collection
 
             numbers.Reverse();
 
+            List<int> uniqueNumbers = new List<int>();
+
+            foreach (int n in numbers)
+            {
+                if (!uniqueNumbers.Contains(n))
+                {
+                    uniqueNumbers.Add(n);
+                }
+            }
+
+            Console.WriteLine("Danh sách không trùng lặp:");
+            foreach (int n in uniqueNumbers)
+            {
+                Console.Write(n + " ");
+=======
             Console.WriteLine("Danh sách sau khi đảo ngược:");
             foreach (int n in numbers)
             {
@@ -165,14 +197,10 @@ namespace generic_collection
 
             Console.WriteLine("Số lượng số chẵn là: " + countEven);
             Console.ReadKey();
-=======
                 Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
             }
             Console.WriteLine();
-
             Console.WriteLine();
-=======
-=======
             Console.ReadKey();
         }
     }
