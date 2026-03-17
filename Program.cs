@@ -13,6 +13,8 @@ namespace generic_collection
             Console.WriteLine("MSV: 2415053122131");
             Console.WriteLine("------------------------------");
 
+            List<string> words = new List<string> { "cam", "xoài", "táo", "ổi", "chuối" };
+=======
             List<string> students = new List<string> { "An", "Bình", "Cường", "Dung", "Hà" };
 =======
             List<int> numbers = new List<int> { 2, 5, 8, 11, 14, 17, 20 };
@@ -64,20 +66,47 @@ namespace generic_collection
 =======
             Console.WriteLine("Bài 02: Nhập List<int> và tính tổng các phần tử\n");
 
-            List<int> ds = new List<int>();
+            Console.WriteLine("Danh sách hiện có:");
+            foreach (string word in words)
+            {
+                Console.Write(word + " ");
+            }
+            Console.WriteLine();
 
+            Console.Write("Nhập chuỗi cần kiểm tra: ");
+            string keyword = Console.ReadLine();
+
+            bool found = false;
+=======
             Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 1 2 3 4 5");
             Console.Write("Nhập: ");
             string input = Console.ReadLine() ?? "";
 
             string[] parts = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string p in parts)
+            if (!string.IsNullOrEmpty(keyword))
             {
+                for (int i = 0; i < words.Count; i++)
+                {
+                    if (words[i].Equals(keyword, StringComparison.OrdinalIgnoreCase))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+=======
                 Console.Write(n + " ");
             }
             Console.WriteLine();
 
+            if (found)
+            {
+                Console.WriteLine("Chuỗi tồn tại trong danh sách.");
+            }
+            else
+            {
+                Console.WriteLine("Chuỗi không tồn tại trong danh sách.");
+=======
             Console.WriteLine("Danh sách sau khi xóa:");
             foreach (string name in students)
             {
