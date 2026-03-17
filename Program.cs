@@ -4,61 +4,55 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("------------------------------");
 
-            Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 05: Tạo List<string> tên sinh viên, xóa một tên do người dùng nhập\n");
+            List<string> students = new List<string> { "An", "Bình", "Cường", "Dung", "Hà" };
 
-            int n;
-            Console.Write("Nhập số lượng sinh viên: ");
-            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
+            Console.WriteLine("Danh sách sinh viên ban đầu:");
+            foreach (string name in students)
             {
-                Console.Write("Nhập lại số lượng (số nguyên > 0): ");
+                Console.Write(name + " ");
             }
+            Console.WriteLine();
 
-            List<string> dsTen = new List<string>();
-            for (int i = 1; i <= n; i++)
+            Console.Write("Nhập tên cần xóa: ");
+            string keyword = Console.ReadLine();
+
+            int index = -1;
+            for (int i = 0; i < students.Count; i++)
             {
-                Console.Write($"Nhập tên sinh viên {i}: ");
-                string ten = (Console.ReadLine() ?? "").Trim();
-
-                while (ten == "")
+                if (students[i].Equals(keyword, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.Write("Tên không được rỗng, nhập lại: ");
-                    ten = (Console.ReadLine() ?? "").Trim();
+                    index = i;
+                    break;
                 }
-
-                dsTen.Add(ten);
             }
 
-            Console.WriteLine("\nDanh sách ban đầu:");
-            Console.WriteLine(string.Join(", ", dsTen));
-
-            Console.Write("\nNhập tên cần xóa: ");
-            string tenXoa = (Console.ReadLine() ?? "").Trim();
-
-            int truoc = dsTen.Count;
-
-            dsTen.RemoveAll(t => string.Equals(t, tenXoa, StringComparison.OrdinalIgnoreCase));
-
-            if (dsTen.Count < truoc)
+            if (index != -1)
             {
-                Console.WriteLine("\nĐã xóa thành công!");
-                Console.WriteLine("Danh sách sau khi xóa:");
-                Console.WriteLine(string.Join(", ", dsTen));
+                students.RemoveAt(index);
+                Console.WriteLine("Đã xóa tên: " + keyword);
             }
             else
             {
-                Console.WriteLine("\nKhông tìm thấy tên cần xóa!");
+                Console.WriteLine("Không tìm thấy tên cần xóa.");
             }
 
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Console.WriteLine("Danh sách sau khi xóa:");
+            foreach (string name in students)
+            {
+                Console.Write(name + " ");
+            }
+            Console.WriteLine();
+
+            Console.ReadKey();
         }
     }
 }
