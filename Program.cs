@@ -4,47 +4,49 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Nhập List<int>, tạo danh sách mới không chứa phần tử trùng.");
+            Console.WriteLine("------------------------------");
 
-            Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
-            Console.WriteLine("Bài 03: Nhập List<int> và tìm số lớn nhất\n");
+            Console.Write("Nhập các số nguyên cách nhau bởi dấu cách: ");
+            string input = Console.ReadLine();
 
-            List<int> ds = new List<int>();
+            string[] parts = input.Split(new char[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            List<int> numbers = new List<int>();
 
-            Console.WriteLine("Nhập các số nguyên (cách nhau bởi khoảng trắng). Ví dụ: 3 7 1 9 5");
-            Console.Write("Nhập: ");
-            string input = Console.ReadLine() ?? "";
-
-            char[] tach = new[] { ' ', '\t' };
-            string[] parts = input.Split(tach, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string p in parts)
+            foreach (string part in parts)
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                int n;
+                if (int.TryParse(part, out n))
+                {
+                    numbers.Add(n);
+                }
             }
 
-            if (ds.Count == 0)
-            {
-                Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
-            }
-            else
-            {
-                int max = ds[0];
-                foreach (int x in ds)
-                    if (x > max) max = x;
+            List<int> uniqueNumbers = new List<int>();
 
-                Console.WriteLine("\nDanh sách đã nhập: " + string.Join(" ", ds));
-                Console.WriteLine("Số lớn nhất = " + max);
+            foreach (int n in numbers)
+            {
+                if (!uniqueNumbers.Contains(n))
+                {
+                    uniqueNumbers.Add(n);
+                }
             }
 
-            Console.WriteLine("\nNhấn Enter để kết thúc...");
-            Console.ReadLine();
+            Console.WriteLine("Danh sách không trùng lặp:");
+            foreach (int n in uniqueNumbers)
+            {
+                Console.Write(n + " ");
+            }
+
+            Console.WriteLine();
+            Console.ReadKey();
         }
     }
 }
