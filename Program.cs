@@ -4,6 +4,12 @@ using System.Text;
 
 namespace generic_collection
 {
+    class Student
+    {
+        public int Id;
+        public string Name;
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -11,6 +17,23 @@ namespace generic_collection
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Tên: Dương Phước Quang");
             Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("Đề bài: Tạo class Student, lưu danh sách sinh viên trong List<Student> và in thông tin.");
+            Console.WriteLine("------------------------------");
+
+            List<Student> students = new List<Student>
+            {
+                new Student { Id = 1, Name = "Nguyễn Văn An" },
+                new Student { Id = 2, Name = "Trần Thị Bình" },
+                new Student { Id = 3, Name = "Lê Văn Chiến" }
+            };
+
+            Console.WriteLine("Danh sách sinh viên:");
+            foreach (Student s in students)
+            {
+                Console.WriteLine("ID: " + s.Id + " | Name: " + s.Name);
+            }
+
+=======
             Console.WriteLine("Đề bài: Viết chương trình tìm giá trị nhỏ nhất trong List<int>.");
 =======
             Console.WriteLine("Đề bài: Nhập List<int>, tạo danh sách mới không chứa phần tử trùng.");
