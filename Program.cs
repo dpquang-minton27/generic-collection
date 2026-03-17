@@ -4,13 +4,20 @@ using System.Text;
 
 namespace generic_collection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.WriteLine("Tên: Dương Phước Quang");
+            Console.WriteLine("MSV: 2415053122131");
+            Console.WriteLine("------------------------------");
 
+            List<int> numbers = new List<int> { 2, 5, 8, 11, 14, 17, 20 };
+
+            Console.WriteLine("Danh sách:");
+            foreach (int n in numbers)
+=======
             Console.WriteLine("SV: Dương Phước Quang - MSSV: 2415053122131");
 
             Console.WriteLine("Bài 05: Tạo List<string> tên sinh viên, xóa một tên do người dùng nhập\n");
@@ -84,12 +91,22 @@ namespace generic_collection
 
             foreach (string p in parts)
             {
-                if (int.TryParse(p, out int n))
-                    ds.Add(n);
+                Console.Write(n + " ");
+            }
+            Console.WriteLine();
+
+            int countEven = 0;
+            foreach (int n in numbers)
+            {
+                if (n % 2 == 0)
+                {
+                    countEven++;
+                }
             }
 
-            if (ds.Count == 0)
-            {
+            Console.WriteLine("Số lượng số chẵn là: " + countEven);
+            Console.ReadKey();
+=======
                 Console.WriteLine("\nBạn chưa nhập số hợp lệ nào!");
             }
             else
